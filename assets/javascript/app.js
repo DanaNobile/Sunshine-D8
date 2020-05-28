@@ -1,22 +1,22 @@
 $('document').ready(function () {
 
     //  -------------------- Sign Up Form ---------------------------
-    
+
     var validemail;
     var validpassword;
     var samepassword;
 
-    const controlbutton= function() { 
+    const controlbutton = function () {
 
         // Sign up button will be disabled until all three of these are true
         $('.signupbtn').attr('disabled', !(validemail && validpassword && samepassword))
 
     }
 
-    $('#EmailInput').on('change', function() {
+    $('#EmailInput').on('change', function () {
 
-        let email= $('#EmailInput').val();
-        validemail= validator.isEmail(email)
+        let email = $('#EmailInput').val();
+        validemail = validator.isEmail(email)
         if (validemail) {
             $('#EmailInput').css('border-color', 'green')
         } else {
@@ -26,12 +26,12 @@ $('document').ready(function () {
 
     })
 
-    $('#PasswordInput').on('change', function() {
+    $('#PasswordInput').on('change', function () {
 
-        let password= $('#PasswordInput').val();
-        let passwordverify= $('#PasswordVerify').val();
-        validpassword= password.match(/^(?=.*[0-9])(?=.*[*!@$#&]).{8,32}$/)
-        samepassword= password === passwordverify;
+        let password = $('#PasswordInput').val();
+        let passwordverify = $('#PasswordVerify').val();
+        validpassword = password.match(/^(?=.*[0-9])(?=.*[*!@$#&]).{8,32}$/)
+        samepassword = password === passwordverify;
         if (samepassword) {
             $('#PasswordVerify').css('border-color', 'green')
         } else {
@@ -44,13 +44,13 @@ $('document').ready(function () {
         }
         controlbutton();
 
-    }) 
+    })
 
-    $('#PasswordVerify').on('change', function() {
+    $('#PasswordVerify').on('change', function () {
 
-        let password= $('#PasswordInput').val();
-        let passwordverify= $('#PasswordVerify').val();
-        samepassword= password === passwordverify;
+        let password = $('#PasswordInput').val();
+        let passwordverify = $('#PasswordVerify').val();
+        samepassword = password === passwordverify;
         if (samepassword) {
             $('#PasswordVerify').css('border-color', 'green')
         } else {
@@ -70,7 +70,7 @@ $('document').ready(function () {
         }
     }
 
-    $('.chooseHere').on('click', function() {
+    $('.chooseHere').on('click', function () {
 
         $('.centerchosenText').hide();
         window.onclick = function (event) {
@@ -86,7 +86,7 @@ $('document').ready(function () {
     })
 
     // When the x inside the modal is clicked, the text from before is shown
-    $('.close').on('click', function() {
+    $('.close').on('click', function () {
 
         $('.centerchosenText').show();
 
@@ -126,25 +126,25 @@ $('document').ready(function () {
             type: 'FeatureCollection',
             features: []
         };
-        
-        for(var i = 0; i < response.businesses.length; i++) {
+
+        for (var i = 0; i < response.businesses.length; i++) {
             var feature = {
                 type: 'Feature',
-              geometry: {
-                type: 'Point',
-                coordinates: [response.businesses[i].coordinates.longitude, response.businesses[i].coordinates.latitude]
-              },
-              properties: {
-                title: response.businesses[i].name,
-                description:response.businesses[i].name
-              }
+                geometry: {
+                    type: 'Point',
+                    coordinates: [response.businesses[i].coordinates.longitude, response.businesses[i].coordinates.latitude]
+                },
+                properties: {
+                    title: response.businesses[i].name,
+                    description: response.businesses[i].name
+                }
             }
 
             geojson.features.push(feature);
         }
-        
+
         mapboxgl.accessToken = 'pk.eyJ1IjoiZm9raXR5b2xvIiwiYSI6ImNrYWVnNjZtczJoMWUydG96Zmd6ZDJhN3oifQ.BSs-7QW-NlhNe2mmRuXR4A';
-        
+
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/light-v10',
@@ -163,21 +163,21 @@ $('document').ready(function () {
         map.addControl(geocoder);
         // Add zoom and rotation controls to the map.
         map.addControl(new mapboxgl.NavigationControl());
-        
+
 
         // add markers to map
-        geojson.features.forEach(function(marker) {
+        geojson.features.forEach(function (marker) {
 
             // create a HTML element for each feature
             var el = document.createElement('div');
             el.className = 'marker';
-        
+
             // make a marker for each feature and add to the map
             new mapboxgl.Marker(el)
-            .setLngLat(marker.geometry.coordinates)
-            .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-            .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
-            .addTo(map);
+                .setLngLat(marker.geometry.coordinates)
+                .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+                    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+                .addTo(map);
         });
 
     });
@@ -250,6 +250,7 @@ $('document').ready(function () {
 
             // This is what everything is appended to so that it can be sent to the webpage
             var containing = $('<div>').addClass('row1');
+            var imageContaining = $('<div>').addClass('image');
 
             // Appends the containing div to the div with the id stated below
             $('#restaurant-list').append(containing);
@@ -257,12 +258,13 @@ $('document').ready(function () {
             // This adds the images that Yelp provides
             var image = document.createElement('img');
             image.src = list[i].image_url;
-            containing.append(image);
+            imageContaining.append(image);
+            containing.append(imageContaining);
 
             // This will add the names of the restaurants in the users area
             var restaurantName = document.createElement('div');
             restaurantName = list[i].name;
-            containing.append(restaurantName)
+            containing.append(restaurantName);
 
             linebreaks();
 
@@ -314,7 +316,7 @@ $('document').ready(function () {
     var actType = getQueryVariable('search_act_type');
     var zipCode = getQueryVariable('search_act_zip');
 
-     //we pass in the settings that come from the build settings function and pass it into an ajax call.
+    //we pass in the settings that come from the build settings function and pass it into an ajax call.
     //then we wait for the response to come back before displaying the activity list;
     $.ajax(buildSettingsForActivitySearch(actType, zipCode)).then(function (response) {
 
@@ -322,28 +324,28 @@ $('document').ready(function () {
         var listOfActivities = buildActivityList(response.businesses);
 
         // build a geojson array of activities markers to add to the map later
-         var geojson = {
+        var geojson = {
             type: 'FeatureCollection',
             features: []
         };
 
-        for(var i = 0; i < response.businesses.length; i++) {
+        for (var i = 0; i < response.businesses.length; i++) {
             var feature = {
                 type: 'Feature',
-              geometry: {
-                type: 'Point',
-                coordinates: [response.businesses[i].coordinates.longitude, response.businesses[i].coordinates.latitude]
-              },
-              properties: {
-                title: response.businesses[i].name,
-                description:response.businesses[i].name
-              }
+                geometry: {
+                    type: 'Point',
+                    coordinates: [response.businesses[i].coordinates.longitude, response.businesses[i].coordinates.latitude]
+                },
+                properties: {
+                    title: response.businesses[i].name,
+                    description: response.businesses[i].name
+                }
             }
 
             geojson.features.push(feature);
         }
 
-        
+
         mapboxgl.accessToken = 'pk.eyJ1IjoiZm9raXR5b2xvIiwiYSI6ImNrYWVnNjZtczJoMWUydG96Zmd6ZDJhN3oifQ.BSs-7QW-NlhNe2mmRuXR4A';
         var map = new mapboxgl.Map({
             container: 'map-activities',
@@ -363,21 +365,21 @@ $('document').ready(function () {
         // Add zoom and rotation controls to the map.
         map.addControl(new mapboxgl.NavigationControl());
 
-        
+
         // add markers to map
-        geojson.features.forEach(function(marker) {
+        geojson.features.forEach(function (marker) {
 
             // create a HTML element for each feature
             var el = document.createElement('div');
             el.className = 'marker';
-        
+
             // make a marker for each feature and add to the map
             new mapboxgl.Marker(el)
-            .setLngLat(marker.geometry.coordinates)
-            .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-            .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
-            .addTo(map);
-        });  
+                .setLngLat(marker.geometry.coordinates)
+                .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+                    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+                .addTo(map);
+        });
 
     });
 

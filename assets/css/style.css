@@ -280,15 +280,27 @@ button.chooseHere {
     background: #6b8d97;
 }
 
-.row1 img {
-    width: 100%;
-    height: 250px;
-}
+
 
 .row1 div {
     padding: 10px;
     font-size: 20px;
 }
+
+#content{
+    background-color: darkmagenta;
+    color: darkmagenta;
+} 
+
+img{
+    display: block;
+    max-width:330px;
+    max-height:195px;
+    width: auto;
+    height: auto;
+}
+
+
 
 /* ----------------------- Map style ----------------------- */
 
