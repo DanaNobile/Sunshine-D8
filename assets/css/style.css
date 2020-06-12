@@ -360,21 +360,7 @@ h3.mapboxgl-popup-close-button {
 
 }
 
-/* This makes it so the images don't look as bad when the screen size is changed */
-/* @media screen and (max-width: 769px) {
 
-    .row1 img {
-        width: 100%;
-        height: 150px;
-    }
-
-    #map {
-        position: absolute;
-        width: 500px;
-        height: 450px;
-    }
-
-} */
 
 @media screen and (min-width: 300px) and (max-width: 980px){
     .container-intro{
@@ -388,9 +374,10 @@ h3.mapboxgl-popup-close-button {
     display: flex;
     justify-content: center;
 }
-    .card-header{
-        margin-top: 50px;
-    }
+.card-header{
+    margin-top: 50px;
+}
+
   img{
     display: block;
     max-width:200px;
@@ -423,18 +410,23 @@ h3.mapboxgl-popup-close-button {
         align-items: center;
         font-family: sans-serif;
     }
-
+.container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+}
     .row1{
         text-align: center;
+        display: flex;
     }
     #map {
-        position: absolute;
+     position: relative;
         width: 400px;
-        height: 350px;
-        
+        height: 350px; 
         padding-right: 15px;
-        float: none;
-        margin-right: 50px;
+        /* float: none; */
+        margin-right: 50px; 
     }
     
 }
