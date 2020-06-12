@@ -410,11 +410,11 @@ h3.mapboxgl-popup-close-button {
         align-items: center;
         font-family: sans-serif;
     }
-.container{
-    display: flex;
+/* .container{ */
+    /* display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: center; */
 }
     .row1{
         text-align: center;
