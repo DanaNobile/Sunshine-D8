@@ -258,8 +258,8 @@ $('document').ready(function () {
             // This adds the images that Yelp provides
             var image = document.createElement('img');
             image.src = list[i].image_url;
-            imageContaining.append(image);
-            containing.append(imageContaining);
+            containing.append(image);
+
 
             // This will add the names of the restaurants in the users area
             var restaurantName = document.createElement('div');
