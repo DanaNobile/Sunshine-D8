@@ -418,10 +418,10 @@ h3.mapboxgl-popup-close-button {
 }
     .row1{
         text-align: center;
-        display: flex;
+        /* display: flex; */
     }
     #map {
-     position: relative;
+     position: absolute;
         width: 400px;
         height: 350px; 
         padding-right: 15px;
