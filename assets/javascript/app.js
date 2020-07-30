@@ -10,7 +10,6 @@ $('document').ready(function () {
 
         // Sign up button will be disabled until all three of these are true
         $('.signupbtn').attr('disabled', !(validemail && validpassword && samepassword))
-
     }
 
     $('#EmailInput').on('change', function () {
@@ -80,42 +79,33 @@ $('document').ready(function () {
                 modal.style.display = "none";
                 $('.centerchosenText').show();
             }
-
         }
-
     })
 
     // When the x inside the modal is clicked, the text from before is shown
     $('.close').on('click', function () {
-
         $('.centerchosenText').show();
-
     })
 
     // ------------------------ Password Requirements Show/Hide -----------------------------
     // This will make the password requirements hidden by default
     $('#PasswordReqs').hide();
     $('#PasswordInput').on('click', function () {
-
         // This will show the user the password requirements when they click on the password box
         $('#PasswordReqs').show()
-
     })
 
     $('#PasswordVerify, #EmailInput').on('click', function () {
-
         // This will hide the password requirements when they click out of the password box
         $('#PasswordReqs').hide()
-
     })
 
     // ------------------------ Restaurants ----------------------------
     // grab the restaurant type and the zip code from the query strings in the url
     var foodType = getQueryVariable('search_rest_type');
     var zipCode = getQueryVariable('search_rest_zip');
-
-    //we pass in the settings that come from the build settings function and pass it into an ajax call.
-    //then we wait for the response to come back before displaying the restaurant list;
+    // pass in the settings that come from the build settings function and pass it into an ajax call.
+    //then  wait for the response to come back before displaying the restaurant list;
     $.ajax(buildSettingsForRestaurantSearch(foodType, zipCode)).then(function (response) {
 
         //using the response list, we build a list of restaurants and put them in an un-ordered list.
@@ -215,7 +205,7 @@ $('document').ready(function () {
         return settings;
     }
 
-    // stackoverflow https://stackoverflow.com/questions/2090551/parse-query-string-in-javascript
+
     // this function will parse a query string parameter from the url and return the data of that parameter to you
     // This grabs the zip code and activity/restaurant from the url and returns it to the document to be used
     function getQueryVariable(variable) {
@@ -226,9 +216,7 @@ $('document').ready(function () {
 
             var pair = vars[i].split('=');
             if (decodeURIComponent(pair[0]) == variable) {
-
                 return decodeURIComponent(pair[1]);
-
             }
 
         }
@@ -236,16 +224,13 @@ $('document').ready(function () {
 
     // using a list of restaurants from the yelp api, we will display a list of restaurants on the search page for restaurants.
     function buildRestaurantList(list) {
-
         for (var i = 0; i < list.length; i++) {
 
             // This function will make it so the text that's generated to the containing div
             // isn't all mushed together
             function linebreaks() {
-
                 var linebreaks = document.createElement('br');
                 containing.append(linebreaks);
-
             }
 
             // This is what everything is appended to so that it can be sent to the webpage
@@ -259,7 +244,6 @@ $('document').ready(function () {
             var image = document.createElement('img');
             image.src = list[i].image_url;
             containing.append(image);
-
 
             // This will add the names of the restaurants in the users area
             var restaurantName = document.createElement('div');
@@ -304,7 +288,6 @@ $('document').ready(function () {
             YelpReview.target = ('_blank')
             // Append the anchor element to the body. 
             containing.append(YelpReview);
-
         }
 
         return;
@@ -404,7 +387,7 @@ $('document').ready(function () {
         return settings;
     }
 
-    // stackoverflow https://stackoverflow.com/questions/2090551/parse-query-string-in-javascript
+
     // this function will parse a query string parameter from the url and return the data of that parameter to you
     function getQueryVariable(variable) {
         var query = window.location.search.substring(1);
@@ -414,9 +397,7 @@ $('document').ready(function () {
 
             var pair = vars[i].split('=');
             if (decodeURIComponent(pair[0]) == variable) {
-
                 return decodeURIComponent(pair[1]);
-
             }
 
         }
