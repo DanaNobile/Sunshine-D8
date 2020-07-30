@@ -2,7 +2,7 @@
 
 
 Group Project
-https://zalina4813.github.io/Sunshine-D8/
+https://dananobile.github.io/Sunshine-D8
 
 # Project Description 
 The concept of our project is the facilitation of deciding what to do for date night. Our goal is makedate-planning easier, complete with customized suggestions based on user input. The categories will be:
